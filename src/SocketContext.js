@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
 const SocketContext = createContext();
-const socket = io('https://interhub.onrender.com/');
+const socket = io('https://interhub.onrender.com');
 
 const ContextProvider = ({ children }) => {
     const [stream, setStream] = useState(null);
@@ -28,7 +28,7 @@ const ContextProvider = ({ children }) => {
         })
 
         socket.on('callUser', ({ from, name: callerName, signal }) => {
-            setCall({ from, name: callerName, signal });
+            setCall({ isReceivedCall: true, from,  name: callerName, signal });
         })
     },[])
 
